@@ -1,0 +1,85 @@
+#include <stdio.h>
+ 
+#define MAX1 = 1000
+#define MAX2 = 500
+
+struct tree{
+    int data;
+    struct tree *esq;
+    struct tree *dir;
+};
+
+struct tree *novono(int valor){
+    struct tree *novo = malloc(sizeof(novo));
+    novo->data = valor;
+    novo->esq = NULL;
+    novo->dir = NULL;
+    return novo;
+}
+
+void preoder(struct tree *r){
+    if(r == NULL)
+    return r;
+    printf("%d", r->data);
+    preorder(r->esq);
+    preorder(r->dir);
+}
+
+void inorder(struct tree *r){
+    if(r == NULL)
+    return r;
+    inorder(r->esq);
+    printf("%d", r->data);
+    inorder(r->dir);
+}
+
+void postorder(struct tree *r){
+    if(r == NULL)
+    return r;
+    postorder(r->esq);
+    postorder(r->dir);
+    printf("%d", r->data);
+}
+
+struct tree* arrayPtree(int v[], int N){
+    if(N<=0){
+        return NULL;
+    }
+    int mid = N/2;
+    struct tree* r = novono(v[mid]);
+    r->esq = arrayPtree(v, mid);
+    r->dir = arrayPtree(v + mid + 1, N-mid-1);
+    
+    return r;
+}
+    
+    
+int main() {
+ int C[MAX1];
+ int N[MAX2];
+ struct tree* r;
+ 
+ for(int i=0; i<MAX1; i++){
+ scanf("%d", &C);
+ printf("Case %d:/n", C[i]);
+ 
+ scanf("%d", &N);
+ for(int j=0; j<N; j++){
+         scanf("%d", vN[j]);
+         struct tree *r = arrayPtree(N, N);
+         printf("Pre.: ");
+         preorder(r);
+         printf("/n");
+         printf("In..: ");
+         inorder(r);
+         printf("/n");
+         printf("Post: ");
+         postorder(r);
+         printf("/n");
+         printf("/n");
+     }
+     
+ }
+ 
+    return 0;
+}
